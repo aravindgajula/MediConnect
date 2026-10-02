@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import crypto from "crypto";
 import userModel from "../models/userModel.js";
 import { generateTokenAndSetCookie } from './generateTokenAndSetCookie.js';
-import { sendVerificationEmail, sendWelcomeEmail, sendPasswordResetEmail, sendResetSuccessEmail } from '../MailTrap/emails.js';
+import { sendPasswordResetEmail, sendResetSuccessEmail } from '../MailTrap/emails.js';
 
 import validator from "validator";
 dotenv.config();
@@ -28,59 +28,25 @@ export const registerUser = async (req, res) => {
         
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const verificationToken = Math.floor(100000 + Math.random() * 900000).toString();
 
         const newUser = new userModel({
             name,
             email,
             password: hashedPassword,
-            verificationToken,
-            verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,
+            isVerified: true,
         });
 
         await newUser.save();
 
         const token=generateTokenAndSetCookie(res, newUser._id);
-        await sendVerificationEmail(newUser.email, verificationToken);
 
-        res.json({ success: true, message: "User registered successfully. Please verify your email.", token: token });
+        res.json({ success: true, message: "User registered successfully.", token: token });
 
     } 
     catch (error) 
     {
         console.error("Error in registration:", error);
         res.json({ success: false, message: "Error While Registering The User" });
-    }
-};
-
-
-export const verifyEmail = async (req, res) => {
-    try 
-    {
-        const { code } = req.body;
-        
-        const user = await userModel.findOne({
-            verificationToken: code,
-            verificationTokenExpiresAt: { $gt: Date.now() }
-        });
-
-        if (!user)  return res.json({ success: false, message: "Invalid or expired verification code" });
-        
-
-        user.isVerified = true;
-        user.verificationToken = undefined;
-        user.verificationTokenExpiresAt = undefined;
-        await user.save();
-
-        await sendWelcomeEmail(user.email, user.name);
-
-        res.json({ success: true, message: "Email verified successfully and welcome email sent" });
-
-    } 
-    catch (error) 
-    {
-        console.error("Error in email verification:", error);
-        res.json({ success: false, message: "Verification failed" });
     }
 };
 

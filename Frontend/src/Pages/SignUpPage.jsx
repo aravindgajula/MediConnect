@@ -19,8 +19,8 @@ const SignUpPage = () => {
         try {
             const response = await signup(name, email, password); 
             if (response.success) {
-                toast.success("An OTP has been sent to your email. Please verify your email.");
-                navigate("/verify-email");
+                toast.success("Account created successfully!");
+                navigate("/");
             }
         } catch (error) {
             toast.error(error.message || "Signup failed. Please try again.");

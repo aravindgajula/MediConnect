@@ -12,7 +12,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignUpPage from "./Pages/SignUpPage";
 import LoginPage from "./Pages/LoginPage";
-import EmailVerificationPage from "./Pages/EmailVerificationPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 import ForgotOtpPage from "./Pages/ForgotOtpPage";
 import ResetPasswordPage from "./Pages/ResetPasswordPage";
@@ -43,7 +42,7 @@ const App = () => {
   if (showSpinner) return <LoadingSpinner />;
 
   
-  const authRoutes = ["/login", "/signup", "/forgot-password", "/verify-email", "/verify-otp"];
+  const authRoutes = ["/login", "/signup", "/forgot-password", "/verify-otp"];
   const isAuthRoute =
     authRoutes.includes(location.pathname) || matchPath("/reset-password/:otp", location.pathname);
 
@@ -63,7 +62,6 @@ const App = () => {
         
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/verify-email" element={<EmailVerificationPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/verify-otp" element={<ForgotOtpPage />} />
         <Route path="/reset-password/:otp" element={<ResetPasswordPage />} />

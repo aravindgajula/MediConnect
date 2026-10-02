@@ -7,9 +7,7 @@ const authSchema = new mongoose.Schema({
     lastLogin:{type:Date,default:Date.now},
     isVerified:{type:Boolean,default:false},
     resetPasswordToken:String,
-    resetPasswordExpiresAt:Date,
-    verificationToken:String,
-    verificationTokenExpiresAt:Date
+    resetPasswordExpiresAt:Date
 },{timestamps:true}); 
 
 const authModel = mongoose.models.auth || mongoose.model('auth', authSchema);
