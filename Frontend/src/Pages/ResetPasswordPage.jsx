@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Lock, Loader, ArrowLeft } from "lucide-react";
-import Input from "../Components/Input";
+import Input from "../components/Input";
 import { useAuthStore } from "../Context/authStore.js";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";

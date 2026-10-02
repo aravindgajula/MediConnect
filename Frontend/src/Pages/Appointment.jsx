@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../Context/AppContent";
 import { useNavigate, useParams } from "react-router-dom";
 import { assets } from "../assets/assets";
-import RelatedDoctors from "../Components/RelatedDoctors";
+import RelatedDoctors from "../components/RelatedDoctors";
 import { toast } from "react-toastify";
 import axios from "axios";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../Context/authStore";
-import Input from "../Components/Input";
+import Input from "../components/Input";
 import { ArrowLeft, Loader, Mail } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
