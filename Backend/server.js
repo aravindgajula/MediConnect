@@ -42,16 +42,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Serve frontend in production
-if (process.env.NODE_ENV === "production") {
-    const frontendPath = path.join(__dirname, "../Frontend", "dist");
-    console.log("Serving frontend from:", frontendPath);
 
-    app.use(express.static(frontendPath));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(frontendPath, "index.html"));
-    });
-}
 
 app.get("/", (req, res) => {
     res.json({ message: "MediConnect API is running" });
