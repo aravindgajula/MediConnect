@@ -53,6 +53,10 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
+app.get("/", (req, res) => {
+    res.json({ message: "MediConnect API is running" });
+});
+
 // Define routes
 app.use('/api/admin', adminRouter);
 app.use('/api/doctor', doctorRouter);
