@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: Outfit;
+}
+
+.active hr {
+  @apply block;
+}
+
+::-webkit-scrollbar {
+  @apply hidden;
+}
+
+@media (max-width: 740px) {
+  .active p {
+    @apply text-white bg-primary;
+  }
+}
+
+Ensure full height for html and body
+html, body {
+  height: 100%;
+  margin: 0; /* Remove default margin */
+  display: flex; /* Allow full height flexbox layout */
+  flex-direction: column; /* Vertical layout */
+}
+
+/* Ensure the root div takes full height */
+#root {
+  height: 100%; /* Ensure root div takes full height */
+  min-height: 100%; /* Full screen height */
+  display: flex; /* Flexbox layout to center content */
+  flex-direction: column; /* Vertical content arrangement */
+}
