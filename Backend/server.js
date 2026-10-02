@@ -43,7 +43,7 @@ app.use(cors(corsOptions));
 
 // Serve frontend in production
 if (process.env.NODE_ENV === "production") {
-    const frontendPath = path.join(__dirname, "frontend", "dist");
+    const frontendPath = path.join(__dirname, "../Frontend", "dist");
     console.log("Serving frontend from:", frontendPath);
 
     app.use(express.static(frontendPath));
