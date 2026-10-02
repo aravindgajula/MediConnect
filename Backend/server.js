@@ -24,7 +24,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Handle multiple origins for CORS
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5175'];
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5175',
+    'https://mediconnect-frontend-eh2e.onrender.com',
+    'https://mediconnect-admin-evs6.onrender.com'
+];
 
 const corsOptions = {
     origin: function (origin, callback) {
